@@ -95,6 +95,7 @@ function Menu() {
 }
 
 function Pizza({ pizzaObj }) {
+  console.log(pizzaObj.photoName);
   // if (pizzaObj.soldOut) return null;
   return (
     <li className="pizza">
