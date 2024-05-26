@@ -13,6 +13,8 @@ export default function App() {
   }
   return (
     <>
+      <Counter />
+
       <button className="close" onClick={() => setIsOpen(!isOpen)}>
         &times;
       </button>
@@ -44,5 +46,54 @@ export default function App() {
         </div>
       )}
     </>
+  );
+}
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  const [step, setStep] = useState(0);
+
+  function addStep() {
+    setStep((s) => s + 1);
+  }
+  function suntractStep() {
+    if (step >= 1) setStep((s) => s - 1);
+  }
+
+  function addCount() {
+    setCount((c) => (c += step));
+  }
+  function subtractCount() {
+    setCount((c) => (c -= step));
+  }
+
+  const date = new Date("May 25 2024");
+  date.setDate(date.getDate() + count);
+  return (
+    <div>
+      <p>
+        <button onClick={suntractStep}>-</button> <p>Steps: {step}</p>{" "}
+        <button onClick={addStep}>+</button>
+      </p>
+      <p>
+        <button onClick={subtractCount}>-</button> <p>Count: {count}</p>{" "}
+        <button onClick={addCount}>+</button>
+      </p>
+      <p>
+        <span>
+          {" "}
+          {count === 0
+            ? " Today is "
+            : count === 1
+            ? `In ${count} day it will be `
+            : count > 1
+            ? `In ${count} days it will be `
+            : count === -1
+            ? `${Math.abs(count)} day ago it was `
+            : `${Math.abs(count)} days ago it was `}
+        </span>
+        {date.toDateString()}
+      </p>
+    </div>
   );
 }
