@@ -122,9 +122,7 @@ function Counter() {
         <div>
           <button onClick={handleReset}>Reset</button>
         </div>
-      ) : (
-        ""
-      )}
+      ) : null}
     </div>
   );
 }
