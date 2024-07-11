@@ -1,31 +1,34 @@
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: false },
-  { id: 3, description: "Socks", quantity: 12, packed: true },
-  { id: 4, description: "Socks", quantity: 12, packed: false },
-  { id: 5, description: "Socks", quantity: 12, packed: true },
-  { id: 6, description: "Socks", quantity: 12, packed: false },
-];
-
-export default function PackingList() {
+function PackingList({ items, handleDelete, handleToggle }) {
   return (
     <div className="list">
       <ul className="list">
-        {initialItems.map((item) => (
-          <Item item={item} key={item.id} />
+        {items.map((item) => (
+          <Item
+            item={item}
+            key={item.id}
+            handleDelete={handleDelete}
+            handleToggle={handleToggle}
+          />
         ))}
       </ul>
     </div>
   );
 }
 
-function Item({ item }) {
+function Item({ item, handleDelete, handleToggle }) {
   return (
     <li>
+      <input
+        type="checkbox"
+        value={item.packed}
+        onChange={() => handleToggle(item.id)}
+      />
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.description}
       </span>
-      <button>❌</button>
+      <button onClick={() => handleDelete(item.id)}>❌</button>
     </li>
   );
 }
+
+export default PackingList;

@@ -1,20 +1,23 @@
 import { useState } from "react";
 
-export default function Form() {
+function Form({ items, setItems }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
 
-  function handleSubmit(e) {
+  const handleItem = (item) => {
+    setItems((items) => [...items, item]);
+  };
+  const handleSubmit = (e) => {
     e.preventDefault();
     // Guard clause, if nothing typed in input form can't be submitted
     if (!description) return;
 
     const newItem = { description, quantity, packed: false, id: Date.now() };
-    console.log(newItem);
-
+    handleItem(newItem);
     setDescription("");
     setQuantity(1);
-  }
+  };
+
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?</h3>
@@ -39,3 +42,5 @@ export default function Form() {
     </form>
   );
 }
+
+export default Form;
