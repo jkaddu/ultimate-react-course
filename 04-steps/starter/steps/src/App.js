@@ -18,6 +18,11 @@ export default function App() {
       <button className="close" onClick={() => setIsOpen(!isOpen)}>
         &times;
       </button>
+      {/* StepMessage is a reusable component where I implemented the prop "step" where you must place a value to know what step it is. As well as the message for the step. Example below.*/}
+      <StepMessage step={1}>
+        <p>Working</p>
+      </StepMessage>
+
       {isOpen && (
         <div className="steps">
           Hello React
@@ -26,9 +31,7 @@ export default function App() {
             <div className={step >= 2 ? "active" : ""}>2</div>
             <div className={step >= 3 ? "active" : ""}>3</div>
           </div>
-          <p className="message">
-            Step {step}: {messages[step - 1]}
-          </p>
+          <StepMessage step={step}>{messages[step - 1]}</StepMessage>
           <div className="buttons">
             <button
               style={{ backgroundColor: "#7950f2", color: "#fff" }}
@@ -46,6 +49,14 @@ export default function App() {
         </div>
       )}
     </>
+  );
+}
+
+function StepMessage({ step, children }) {
+  return (
+    <p className="message">
+      Step {step}:{children}
+    </p>
   );
 }
 
@@ -74,6 +85,7 @@ function Counter() {
 
   const date = new Date();
   date.setDate(date.getDate() + count);
+
   return (
     <div>
       <div>
