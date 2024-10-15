@@ -7,9 +7,10 @@ function Form({ items, setItems }) {
   const handleItem = (item) => {
     setItems((items) => [...items, item]);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Guard clause, if nothing typed in input form can't be submitted
+    // Guard clause, if nothing is typed in input form can't be submitted
     if (!description) return;
 
     const newItem = { description, quantity, packed: false, id: Date.now() };
