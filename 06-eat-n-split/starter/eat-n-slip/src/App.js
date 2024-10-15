@@ -66,7 +66,9 @@ export default function App() {
           {showAddFriend ? "Close" : "Add Friend"}
         </Button>
       </div>
-      {selectedFriend && <FormSplitBill Button={Button} />}
+      {selectedFriend && (
+        <FormSplitBill Button={Button} selectedFriend={selectedFriend} />
+      )}
     </div>
   );
 }
