@@ -1,4 +1,7 @@
 export default function Stats({ items }) {
+  if (!items.length)
+    return <p className="stats">Start getting ready for your arrival!</p>;
+
   const numItems = items.length;
   const numPacked = items.filter((item) => item.packed).length;
   const percentage = Math.ceil((numPacked / numItems) * 100);
