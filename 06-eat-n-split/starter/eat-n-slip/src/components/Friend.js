@@ -1,4 +1,4 @@
-export default function Friend({ friend, Button }) {
+export default function Friend({ friend, Button, handleSelection }) {
   return (
     <li>
       <img src={friend.image} alt={friend.name} />
@@ -15,7 +15,7 @@ export default function Friend({ friend, Button }) {
       )}
       {friend.balance === 0 && <p>You and {friend.name} are smooth.</p>}
 
-      <Button>Select</Button>
+      <Button onClick={() => handleSelection(friend)}>Select</Button>
     </li>
   );
 }
