@@ -2,7 +2,7 @@ import Logo from "./components/Logo";
 import Form from "./components/Form";
 import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
-import FlashCards from "./components/FlashCards";
+// import FlashCards from "./components/FlashCards";
 import { useState } from "react";
 
 function App() {
@@ -20,6 +20,14 @@ function App() {
     );
   };
 
+  const handleClearList = () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete all items."
+    );
+
+    if (confirmed) setItems([]);
+  };
+
   return (
     <div className="app">
       <Logo />
@@ -28,6 +36,7 @@ function App() {
         items={items}
         handleDelete={handleDelete}
         handleToggle={handleToggle}
+        handleClearList={handleClearList}
       />
       {/* <FlashCards /> */}
       <Stats items={items} />
