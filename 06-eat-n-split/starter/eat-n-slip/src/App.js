@@ -47,7 +47,8 @@ export default function App() {
   }
 
   function handleSelection(friend) {
-    setSelectedFriend(friend);
+    setSelectedFriend((cur) => (cur?.id === friend.id ? null : friend));
+    setShowAddFriend(false);
   }
 
   return (
@@ -56,6 +57,7 @@ export default function App() {
         <FriendsList
           Button={Button}
           friends={friends}
+          selectedFriend={selectedFriend}
           handleSelection={handleSelection}
         />
 
