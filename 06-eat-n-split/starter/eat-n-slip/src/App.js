@@ -85,6 +85,7 @@ export default function App() {
           Button={Button}
           selectedFriend={selectedFriend}
           handleSplitBill={handleSplitBill}
+          key={selectedFriend.id}
         />
       )}
     </div>
