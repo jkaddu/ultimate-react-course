@@ -10,16 +10,24 @@ const query = "frozen";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(function () {
     async function fetchMovies() {
-      setIsLoading(true);
-      const res = await fetch(
-        `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-      );
-      const data = await res.json();
-      setMovies(data.Search);
-      setIsLoading(false);
+      try {
+        setIsLoading(true);
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+        );
+
+        if (!res.ok) throw new Error("Error occurred when getting movies");
+        const data = await res.json();
+        setMovies(data.Search);
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err.message);
+        setError(err.message);
+      }
     }
     fetchMovies();
   }, []);
