@@ -7,7 +7,6 @@ import WatchedMovies from "./components/WatchedMovies";
 import ErrorNote from "./components/ErrorNote";
 
 const KEY = "42a6905d";
-// const query = "frozen";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
@@ -35,6 +34,11 @@ export default function App() {
         } finally {
           setIsLoading(false);
         }
+      }
+      if (query.length < 3) {
+        setMovies([]);
+        setError("");
+        return;
       }
       fetchMovies();
     },
