@@ -5,6 +5,7 @@ import Loader from "./components/Loader";
 import MovieList from "./components/MovieList";
 import WatchedMovies from "./components/WatchedMovies";
 import ErrorNote from "./components/ErrorNote";
+import MovieDetails from "./components/MovieDetails";
 
 const KEY = "42a6905d";
 
@@ -13,6 +14,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
+  const [selectedId, setSelectedId] = useState(null);
 
   useEffect(
     function () {
@@ -55,7 +57,11 @@ export default function App() {
           {error && <ErrorNote message={error} />}
         </Box>
         <Box>
-          <WatchedMovies />
+          {selectedId ? (
+            <MovieDetails selectedId={selectedId} />
+          ) : (
+            <WatchedMovies />
+          )}
         </Box>
       </main>
     </>
