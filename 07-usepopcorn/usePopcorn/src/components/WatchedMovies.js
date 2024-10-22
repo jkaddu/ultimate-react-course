@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Box from "./Box";
 
 const tempWatchedData = [
   {
@@ -35,7 +34,7 @@ export default function WatchedMovies({ movies }) {
   const avgRuntime = average(watched.map((movie) => movie.runtime));
 
   return (
-    <Box>
+    <>
       <div className="summary">
         <h2>Movies you watched</h2>
         <div>
@@ -80,6 +79,6 @@ export default function WatchedMovies({ movies }) {
           </li>
         ))}
       </ul>
-    </Box>
+    </>
   );
 }
