@@ -1,10 +1,8 @@
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-export default function WatchedMovies({ watched }) {
-  const avgImdbRating = Math.round(
-    average(watched.map((movie) => movie.imdbRating))
-  );
+export default function WatchedMovies({ watched, handleDeleteWatchedMovie }) {
+  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = Math.round(
     average(watched.map((movie) => movie.userRating))
   );
@@ -21,7 +19,7 @@ export default function WatchedMovies({ watched }) {
           </p>
           <p>
             <span>⭐️</span>
-            <span>{avgImdbRating}</span>
+            <span>{avgImdbRating.toFixed(2)}</span>
           </p>
           <p>
             <span>🌟</span>
@@ -52,6 +50,12 @@ export default function WatchedMovies({ watched }) {
                 <span>⏳</span>
                 <span>{movie.runtime} min</span>
               </p>
+              <button
+                className="btn-delete"
+                onClick={() => handleDeleteWatchedMovie(movie.imdbID)}
+              >
+                x
+              </button>
             </div>
           </li>
         ))}
