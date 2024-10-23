@@ -16,6 +16,14 @@ export default function App() {
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
 
+  function handleSelectedMovie(id) {
+    setSelectedId((selectedId) => (id === selectedId ? null : id));
+  }
+
+  function handleCloseMovie() {
+    setSelectedId(null);
+  }
+
   useEffect(
     function () {
       async function fetchMovies() {
@@ -53,12 +61,21 @@ export default function App() {
       <main className="main">
         <Box>
           {isLoading && <Loader />}
-          {!isLoading && !error && <MovieList movies={movies} />}
+          {!isLoading && !error && (
+            <MovieList
+              movies={movies}
+              handleSelectedMovie={handleSelectedMovie}
+            />
+          )}
           {error && <ErrorNote message={error} />}
         </Box>
         <Box>
           {selectedId ? (
-            <MovieDetails selectedId={selectedId} />
+            <MovieDetails
+              KEY={KEY}
+              selectedId={selectedId}
+              handleCloseMovie={handleCloseMovie}
+            />
           ) : (
             <WatchedMovies />
           )}
