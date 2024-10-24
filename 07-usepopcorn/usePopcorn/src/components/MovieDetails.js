@@ -50,22 +50,33 @@ export default function MovieDetails({
     function () {
       if (!title) return;
       document.title = `Movie | ${title}`;
+
+      return function () {
+        document.title = "usePopcorn";
+      };
     },
+
     [title]
   );
 
   useEffect(
     function () {
+      const controller = new AbortController();
       async function getMovieDetails() {
         setIsLoading(true);
         const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
+          `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`,
+          { signal: controller.signal }
         );
         const data = await res.json();
         setMovie(data);
         setIsLoading(false);
       }
       getMovieDetails();
+
+      return function () {
+        controller.abort();
+      };
     },
 
     [selectedId, KEY]
