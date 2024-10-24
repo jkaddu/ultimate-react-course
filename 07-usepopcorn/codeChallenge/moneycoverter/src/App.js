@@ -26,13 +26,13 @@ export default function App() {
         value={amount}
         onChange={(e) => setAmount(Number(e.target.value))}
       />
-      <select>
+      <select value={fromCur} onChange={(e) => setFromCur(e.target.value)}>
         <option value="USD">USD</option>
         <option value="EUR">EUR</option>
         <option value="CAD">CAD</option>
         <option value="INR">INR</option>
       </select>
-      <select>
+      <select value={toCur} onChange={(e) => setToCur(e.target.value)}>
         <option value="USD">USD</option>
         <option value="EUR">EUR</option>
         <option value="CAD">CAD</option>
