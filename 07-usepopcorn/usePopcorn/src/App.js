@@ -33,15 +33,6 @@ export default function App() {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
 
-  useEffect(function () {
-    document.addEventListener("keydown", function (e) {
-      if (e.code === "Escape") {
-        handleCloseMovie();
-        console.log("closing");
-      }
-    });
-  }, []);
-
   useEffect(
     function () {
       const controller = new AbortController();
@@ -60,7 +51,6 @@ export default function App() {
           setMovies(data.Search);
           setError("");
         } catch (err) {
-          console.log(err);
           if (err.name !== "AbortError") {
             setError(err.message);
           }
@@ -73,6 +63,7 @@ export default function App() {
         setError("");
         return;
       }
+      handleCloseMovie();
       fetchMovies();
 
       return function () {

@@ -48,6 +48,22 @@ export default function MovieDetails({
 
   useEffect(
     function () {
+      function eKeyCallBack(e) {
+        if (e.code === "Escape") {
+          handleCloseMovie();
+        }
+      }
+      document.addEventListener("keydown", eKeyCallBack);
+
+      return function () {
+        document.removeEventListener("keydown", eKeyCallBack);
+      };
+    },
+    [handleCloseMovie]
+  );
+
+  useEffect(
+    function () {
       if (!title) return;
       document.title = `Movie | ${title}`;
 
