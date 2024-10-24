@@ -22,6 +22,7 @@ export default function App() {
           console.log(err.message);
         }
       }
+      if (fromCur === toCur) return setConverted(amount);
       fetchConversions();
     },
     [amount, fromCur, toCur]
