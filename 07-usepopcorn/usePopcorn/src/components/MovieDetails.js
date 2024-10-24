@@ -63,14 +63,18 @@ export default function MovieDetails({
     function () {
       const controller = new AbortController();
       async function getMovieDetails() {
-        setIsLoading(true);
-        const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`,
-          { signal: controller.signal }
-        );
-        const data = await res.json();
-        setMovie(data);
-        setIsLoading(false);
+        try {
+          setIsLoading(true);
+          const res = await fetch(
+            `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`,
+            { signal: controller.signal }
+          );
+          const data = await res.json();
+          setMovie(data);
+          setIsLoading(false);
+        } catch (err) {
+          if (err.name !== "AbortError") console.log(err.message);
+        }
       }
       getMovieDetails();
 
