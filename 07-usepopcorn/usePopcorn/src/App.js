@@ -33,7 +33,7 @@ export default function App() {
     setWatched((watched) => [...watched, movie]);
   }
 
-  function handleDeleteWatchMovie(id) {
+  function handleDeleteWatchedMovie(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
 
@@ -110,7 +110,7 @@ export default function App() {
           ) : (
             <WatchedMovies
               watched={watched}
-              handleDeleteWatchMovie={handleDeleteWatchMovie}
+              handleDeleteWatchedMovie={handleDeleteWatchedMovie}
             />
           )}
         </Box>
