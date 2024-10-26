@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import StarRating from "./StarRating";
 import Loader from "./Loader";
+import { useKey } from "./useKey";
 
 export default function MovieDetails({
   KEY,
@@ -46,21 +47,7 @@ export default function MovieDetails({
     handleCloseMovie();
   }
 
-  useEffect(
-    function () {
-      function eKeyCallBack(e) {
-        if (e.code === "Escape") {
-          handleCloseMovie();
-        }
-      }
-      document.addEventListener("keydown", eKeyCallBack);
-
-      return function () {
-        document.removeEventListener("keydown", eKeyCallBack);
-      };
-    },
-    [handleCloseMovie]
-  );
+  useKey("Escape", handleCloseMovie);
 
   useEffect(
     function () {

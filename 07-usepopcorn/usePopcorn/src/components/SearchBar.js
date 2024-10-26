@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-
 export default function SearchBar({ query, setQuery }) {
   // The React way of selecting and using a DOM element
   const inputEl = useRef(null);
