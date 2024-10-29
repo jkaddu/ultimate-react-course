@@ -4,7 +4,7 @@ export default function Pricing() {
   return (
     <div>
       <PageNav />
-      Pricing
+      <h1>Pricing</h1>
     </div>
   );
 }
