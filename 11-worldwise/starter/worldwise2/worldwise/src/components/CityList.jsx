@@ -4,10 +4,11 @@ import CityItem from "./CityItem";
 import Message from "./Message";
 
 export default function CityList({ cities, isLoading }) {
+  console.log(cities);
   if (isLoading) return <Spinner />;
-  if (!cities.lemgth)
+  if (!cities.length)
     return (
-      <Message message="Add your fiest location by clicking on a city anywhere on the map." />
+      <Message message="Add your first location by clicking on a city anywhere on the map." />
     );
   return (
     <div className={styles.cityList}>

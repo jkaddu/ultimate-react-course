@@ -5,9 +5,9 @@ import Message from "./Message";
 
 export default function CountryList({ cities, isLoading }) {
   if (isLoading) return <Spinner />;
-  if (!cities.lemgth)
+  if (!cities.length)
     return (
-      <Message message="Add your fiest location by clicking on a city anywhere on the map." />
+      <Message message="Add your first location by clicking on a city anywhere on the map." />
     );
 
   const countries = cities.reduce((arr, city) => {
