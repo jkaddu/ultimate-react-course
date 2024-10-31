@@ -6,7 +6,7 @@ import styles from "./AppLayout.module.css";
 export default function AppLayout() {
   return (
     <div className={styles.app}>
-      <AppNav />
+      {/* <AppNav /> */}
       <Sidebar />
       <Map />
       <h1>AppLayout</h1>
