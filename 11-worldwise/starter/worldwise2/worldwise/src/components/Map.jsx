@@ -12,6 +12,9 @@ export default function Map() {
       <p>
         Position: {lat}, {lng}
       </p>
+      <button onClick={() => setSearchParams({ lat: 25, lng: 90 })}>
+        Locate
+      </button>
     </div>
   );
 }
